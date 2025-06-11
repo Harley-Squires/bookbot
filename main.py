@@ -1,21 +1,22 @@
+import sys
+
 def main():
-    book_path = "books/frankenstein.txt"
+    book_path = sys.argv[1] #Usage: python3 main.py <path_to_book>
     text = get_book_text(book_path)
     num_words = get_num_words(text)
     chars_dict = get_chars_dict(text)
     chars_sorted_list = chars_dict_to_sorted_list(chars_dict)
 
     print(f"--- Begin report of {book_path} ---")
-    print(f"{num_words} words found in the document")
+    print(f"Found {num_words} total words")
     print()
 
     for item in chars_sorted_list:
         if not item["char"].isalpha():
             continue
-        print(f"The '{item['char']}' character was found {item['num']} times")
+        print(f"{item['char']}: {item['num']}")
 
     print("--- End report ---")
-
 
 def get_num_words(text):
     words = text.split()
